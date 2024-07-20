@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import Contacts from "../components/ContactList/ContactList.json";
 
-// Завантаження контактів з localStorage, якщо вони є
 const loadContactsFromLocalStorage = () => {
   const storedContacts = localStorage.getItem("contacts");
   return storedContacts ? JSON.parse(storedContacts) : Contacts;
