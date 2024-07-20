@@ -1,23 +1,27 @@
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuery } from "../../redux/filtersSlice";
 import styles from "./SearchBox.module.css";
 
-const SearchBox = ({ searchQuery, onSearchContact }) => {
+const SearchBox = () => {
+  const dispatch = useDispatch();
+  const query = useSelector((state) => state.contacts.query);
+
+  const handleChange = (event) => {
+    dispatch(setQuery(event.target.value));
+  };
+
   return (
     <div className={styles.form}>
-      <h3>Find contacts by name</h3>
+      <h2>Search Contacts</h2>
       <input
         className={styles.field}
         type="text"
-        value={searchQuery}
-        onChange={onSearchContact}
+        placeholder="Search by name"
+        value={query}
+        onChange={handleChange}
       />
     </div>
   );
-};
-
-SearchBox.propTypes = {
-  searchQuery: PropTypes.string.isRequired,
-  onSearchContact: PropTypes.func.isRequired,
 };
 
 export default SearchBox;

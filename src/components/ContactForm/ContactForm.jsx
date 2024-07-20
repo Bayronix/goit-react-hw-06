@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 import styles from "./ContactForm.module.css";
-import { useId } from "react";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -14,12 +14,12 @@ const validationSchema = Yup.object().shape({
     .max(50, "Too long")
     .required("Required"),
 });
-const ContactForm = ({ onAddContact }) => {
-  const id = useId();
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    const contactWithId = { ...values, id };
-    onAddContact(contactWithId);
+    dispatch(addContact(values));
     resetForm();
   };
 
@@ -53,10 +53,6 @@ const ContactForm = ({ onAddContact }) => {
       )}
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
