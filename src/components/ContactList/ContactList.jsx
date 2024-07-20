@@ -12,24 +12,25 @@ const ContactList = () => {
   };
 
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(query.toLowerCase())
+    contact.name?.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
     <div className={styles.contact}>
       <ul className={styles.list}>
-        {filteredContacts.map((contact) => (
-          <li key={contact.id} className={styles.listItem}>
-            <span className={styles.name}>{contact.name}</span>:
-            <span className={styles.number}>{contact.number}</span>
-            <button
-              onClick={() => handleDelete(contact.id)}
-              className={styles.button}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {filteredContacts.length > 0 &&
+          filteredContacts.map((contact) => (
+            <li key={contact.id} className={styles.listItem}>
+              <span className={styles.name}>{contact.name}</span>:
+              <span className={styles.number}>{contact.number}</span>
+              <button
+                onClick={() => handleDelete(contact.id)}
+                className={styles.button}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
       </ul>
     </div>
   );
