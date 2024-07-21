@@ -4,7 +4,7 @@ import styles from "./SearchBox.module.css";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const query = useSelector((state) => state.contacts.query);
+  const query = useSelector((state) => state.filter.name);
 
   const handleChange = (event) => {
     dispatch(setQuery(event.target.value));
