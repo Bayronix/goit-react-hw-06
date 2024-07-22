@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Contacts from "../components/ContactList/ContactList.json";
 
 const initialState = {
-  contacts: Contacts,
+  items: Contacts,
 };
 
 const contactsSlice = createSlice({
@@ -12,10 +12,10 @@ const contactsSlice = createSlice({
   reducers: {
     addContact(state, action) {
       const newContact = { id: uuidv4(), ...action.payload };
-      state.contacts.push(newContact);
+      state.items.push(newContact);
     },
     deleteContact(state, action) {
-      state.contacts = state.contacts.filter(
+      state.items = state.items.filter(
         (contact) => contact.id !== action.payload
       );
     },
